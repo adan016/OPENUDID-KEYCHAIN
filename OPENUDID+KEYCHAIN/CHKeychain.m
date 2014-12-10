@@ -9,16 +9,21 @@
 #import "CHKeychain.h"
 
 @implementation CHKeychain
-+ (NSMutableDictionary *)getKeychainQuery:(NSString *)service {
+
++ (NSMutableDictionary *)getKeychainQuery:(NSString *)service
+{
     return [NSMutableDictionary dictionaryWithObjectsAndKeys:
-            (__bridge id)kSecClassGenericPassword,(__bridge id)kSecClass,
-            service, (__bridge id)kSecAttrService,
-            service, (__bridge id)kSecAttrAccount,
-            (__bridge id)kSecAttrAccessibleAfterFirstUnlock,(__bridge id)kSecAttrAccessible,
+            (__bridge id)kSecClassGenericPassword,
+            (__bridge id)kSecClass,service,
+            (__bridge id)kSecAttrService,service,
+            (__bridge id)kSecAttrAccount,
+            (__bridge id)kSecAttrAccessibleAfterFirstUnlock,
+            (__bridge id)kSecAttrAccessible,
             nil];
 }
 
-+ (void)saveByKey:(NSString *)key data:(id)data {
++ (void)saveByKey:(NSString *)key data:(id)data
+{
     //Get search dictionary
     NSMutableDictionary *keychainQuery = [self getKeychainQuery:key];
     //Delete old item before add new item
